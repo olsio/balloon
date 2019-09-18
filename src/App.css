@@ -26,18 +26,18 @@
   }
 }
 
-.example-enter {
-  animation: bounce 1s;
+.balloon-enter {
+  animation: bounce 0.5s;
 }
 
-.example-enter.example-enter-active {
+.balloon-enter.balloon-enter-active {
   opacity: 1;
 }
 
-.example-leave {
+.balloon-leave {
   opacity: 1;
 }
 
-.example-leave.example-leave-active {
+.balloon-leave.balloon-leave-active {
   animation: explode 1s;
 }
