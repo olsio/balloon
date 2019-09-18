@@ -15,10 +15,20 @@ const start = state => state.currentRound === 0
 
 const end = state => state.currentRound > state.rounds.length
 
+const currentScreen = state => {
+  if (start(state)) {
+    return 'START'
+  }
+
+  if (end(state)) {
+    return 'END'
+  }
+
+  return 'GAME'
+}
 const getUiState = state => {
   return {
-    start: start(state),
-    end: end(state),
+    currentScreen: currentScreen(state),
     showBalloon: showBalloon(state),
     nextButtonActive: nextButtonActive(state),
     nextButtonText: nextButtonText(state),

@@ -16,6 +16,8 @@ const Balloon = props => {
     <CSSTransitionGroup
       transitionName="balloon"
       transitionLeave={props.exploded}
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={1000}
     >
       {balloonComponent}
     </CSSTransitionGroup>
