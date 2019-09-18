@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/balloon/static/css/main.54b0fbdd.chunk.css",
+    "main.js": "/balloon/static/js/main.0016b625.chunk.js",
+    "main.js.map": "/balloon/static/js/main.0016b625.chunk.js.map",
+    "runtime~main.js": "/balloon/static/js/runtime~main.1b479fb0.js",
+    "runtime~main.js.map": "/balloon/static/js/runtime~main.1b479fb0.js.map",
+    "static/css/2.94524eb4.chunk.css": "/balloon/static/css/2.94524eb4.chunk.css",
+    "static/js/2.c768e6b9.chunk.js": "/balloon/static/js/2.c768e6b9.chunk.js",
+    "static/js/2.c768e6b9.chunk.js.map": "/balloon/static/js/2.c768e6b9.chunk.js.map",
+    "index.html": "/balloon/index.html",
+    "precache-manifest.5287d1704f65811414366069ec87745c.js": "/balloon/precache-manifest.5287d1704f65811414366069ec87745c.js",
+    "service-worker.js": "/balloon/service-worker.js",
+    "static/css/2.94524eb4.chunk.css.map": "/balloon/static/css/2.94524eb4.chunk.css.map",
+    "static/css/main.54b0fbdd.chunk.css.map": "/balloon/static/css/main.54b0fbdd.chunk.css.map",
+    "static/media/balloon.png": "/balloon/static/media/balloon.c898846b.png",
+    "static/media/index.css": "/balloon/static/media/roboto-latin-900italic.ebf6d164.woff2"
+  }
+}
