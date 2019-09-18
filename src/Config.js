@@ -1,6 +1,6 @@
 const Config = {
   sizeIncrease: 2,
-  maxPumps: [2, 3, 5, 5, 8],
+  maxPumps: [2, 3, 5, 6, 8],
   earningScale: [
     1, // '1'
     1, // '2'
