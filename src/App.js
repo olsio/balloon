@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import Config from './Config'
-import { getUiState, roundIsRunning } from './UiState'
+import { getUiState, roundIsRunning, isLastRound } from './UiState'
 import StartScreen from './StartScreen'
 import GameScreen from './GameScreen'
 import EndScreen from './EndScreen'
@@ -41,6 +41,7 @@ const defaultState = () => {
     currentRound: 0,
     winnings: 0,
     runningAnimation: false,
+    exploded: false,
     buttonText: 'Take winnings'
   }
 }
@@ -57,40 +58,57 @@ class App extends React.Component {
   }
 
   pump() {
-    const { pumps, earned } = this.state
+    const { pumps, earned, runningAnimation } = this.state
+    if (runningAnimation) {
+      return
+    }
 
     this.runAnimation()
-    this.setState({
-      pumps: pumps + 1,
-      earned: earned + Config.earningScale[pumps]
-    })
+    if (isLastRound(this.state)) {
+      this.setState({ exploded: true })
+
+      sleep(50).then(() => this.nextRound())
+    } else {
+      this.setState({
+        pumps: pumps + 1,
+        earned: earned + Config.earningScale[pumps]
+      })
+    }
   }
 
   reset() {
     this.setState(defaultState())
   }
 
-  nextRound() {
+  takeWinnings() {
     const { earned, currentRound, winnings, rounds } = this.state
-    const won = roundIsRunning(this.state)
     this.setState({
       ...defaultState(),
       rounds: rounds,
       currentRound: currentRound + 1,
-      winnings: won ? winnings + earned : winnings
+      winnings: winnings + earned
+    })
+  }
+
+  nextRound() {
+    const { currentRound, rounds } = this.state
+    this.setState({
+      ...defaultState(),
+      rounds: rounds,
+      currentRound: currentRound + 1
     })
   }
 
   currentScreen() {
-    const { pumps, winnings, earned } = this.state
+    const { exploded, pumps, winnings, earned } = this.state
 
-    const {
-      currentScreen,
-      nextButtonActive,
-      pumpButtonActive,
-      showBalloon,
-      nextButtonText
-    } = getUiState(this.state)
+    console.log(this.state)
+
+    const { currentScreen, nextButtonActive, pumpButtonActive } = getUiState(
+      this.state
+    )
+
+    console.log(getUiState(this.state))
 
     switch (currentScreen) {
       case 'START':
@@ -103,10 +121,9 @@ class App extends React.Component {
             pumps={pumps}
             winnings={winnings}
             earned={earned}
-            nextRound={() => this.nextRound()}
-            nextButtonText={nextButtonText}
+            takeWinnings={() => this.takeWinnings()}
             nextButtonActive={nextButtonActive}
-            showBalloon={showBalloon}
+            exploded={exploded}
             pumpButtonActive={pumpButtonActive}
             pump={() => this.pump()}
           />

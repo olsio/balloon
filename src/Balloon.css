@@ -1,5 +1,5 @@
 .explode {
-  animation: explode 1s;
+  animation: explode 0.5s;
 }
 
 @keyframes bounce {
@@ -30,14 +30,14 @@
   animation: bounce 0.5s;
 }
 
-.balloon-enter.balloon-enter-active {
+.balloon-enter-active {
   opacity: 1;
 }
 
-.balloon-leave {
+.balloon-exit {
   opacity: 1;
 }
 
-.balloon-leave.balloon-leave-active {
+.balloon-exit-active {
   animation: explode 1s;
 }

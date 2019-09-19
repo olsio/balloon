@@ -1,19 +1,14 @@
-const pumpButtonActive = state =>
-  !state.runningAnimation && roundIsRunning(state)
-
 const nextButtonActive = state => !state.runningAnimation && state.pumps > 0
 
 const roundIsRunning = state =>
   state.pumps <= state.rounds[state.currentRound - 1]
 
-const nextButtonText = state =>
-  roundIsRunning(state) ? 'Take Winnings' : 'Next Round'
-
-const showBalloon = state => state.pumps <= state.rounds[state.currentRound - 1]
-
 const start = state => state.currentRound === 0
 
 const end = state => state.currentRound > state.rounds.length
+
+const isLastRound = state =>
+  state.pumps === state.rounds[state.currentRound - 1] - 1
 
 const currentScreen = state => {
   if (start(state)) {
@@ -29,11 +24,8 @@ const currentScreen = state => {
 const getUiState = state => {
   return {
     currentScreen: currentScreen(state),
-    showBalloon: showBalloon(state),
-    nextButtonActive: nextButtonActive(state),
-    nextButtonText: nextButtonText(state),
-    pumpButtonActive: pumpButtonActive(state)
+    nextButtonActive: nextButtonActive(state)
   }
 }
 
-export { getUiState, roundIsRunning }
+export { getUiState, roundIsRunning, isLastRound }

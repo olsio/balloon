@@ -5,8 +5,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Balloon from './Balloon'
 import TextField from '@material-ui/core/TextField'
 import Paper from '@material-ui/core/Paper'
-import Config from './Config'
-import './GameScreen.css'
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -46,11 +44,9 @@ export default function GameScreen(props) {
   const {
     winnings,
     earned,
-    nextRound,
-    nextButtonText,
     nextButtonActive,
-    showBalloon,
-    pumpButtonActive,
+    exploded,
+    takeWinnings,
     pumps,
     pump
   } = props
@@ -81,25 +77,21 @@ export default function GameScreen(props) {
             variant="contained"
             fullWidth
             color="primary"
-            disabled={!pumpButtonActive}
-            onClick={pump}
-          >
-            Pump
-          </Button>
-          <Button
-            variant="contained"
-            fullWidth
-            color="primary"
             disabled={!nextButtonActive}
-            onClick={nextRound}
+            onClick={takeWinnings}
           >
-            {nextButtonText}
+            Take Winnings
           </Button>
         </div>
       </Grid>
       <Grid item xs={12} sm={4} md={7} component={Paper} square>
         <div className={classes.paper}>
-          <Balloon size={pumps * Config.sizeIncrease} exploded={!showBalloon} />
+          <Balloon
+            onClick={pump}
+            pumps={pumps}
+            exploded={exploded}
+            nextRound={props.nextRound}
+          />
         </div>
       </Grid>
     </React.Fragment>
