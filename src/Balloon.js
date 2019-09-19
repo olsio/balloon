@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './Balloon.css'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Config from './Config'
 import Exploding from './images/balloon_explode.png'
+import Grid from '@material-ui/core/Grid'
 
 const Balloon = props => {
   const balloon = props.exploded ? (
@@ -26,7 +27,7 @@ const Balloon = props => {
   )
 
   return (
-    <React.Fragment>
+    <Grid container direction="column" alignItems="center" justify="center">
       <TransitionGroup>
         <CSSTransition
           key={props.pumps}
@@ -38,7 +39,7 @@ const Balloon = props => {
           {balloon}
         </CSSTransition>
       </TransitionGroup>
-    </React.Fragment>
+    </Grid>
   )
 }
 export default Balloon

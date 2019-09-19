@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Balloon from './Balloon'
 import TextField from '@material-ui/core/TextField'
-import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -53,8 +52,14 @@ export default function GameScreen(props) {
 
   return (
     <React.Fragment>
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justify="center"
+        className={classes.container}
+      >
+        <Grid item xs={12}>
           <TextField
             id="outlined-name"
             label="Winnings"
@@ -82,17 +87,13 @@ export default function GameScreen(props) {
           >
             Take Winnings
           </Button>
-        </div>
-      </Grid>
-      <Grid item xs={12} sm={4} md={7} component={Paper} square>
-        <div className={classes.paper}>
           <Balloon
             onClick={pump}
             pumps={pumps}
             exploded={exploded}
             nextRound={props.nextRound}
           />
-        </div>
+        </Grid>
       </Grid>
     </React.Fragment>
   )

@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import Config from './Config'
-import { getUiState, roundIsRunning, isLastRound } from './UiState'
+import { getUiState, isLastRound } from './UiState'
 import StartScreen from './StartScreen'
 import GameScreen from './GameScreen'
 import EndScreen from './EndScreen'
@@ -91,11 +91,12 @@ class App extends React.Component {
   }
 
   nextRound() {
-    const { currentRound, rounds } = this.state
+    const { currentRound, rounds, winnings } = this.state
     this.setState({
       ...defaultState(),
       rounds: rounds,
-      currentRound: currentRound + 1
+      currentRound: currentRound + 1,
+      winnings: winnings
     })
   }
 
